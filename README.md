@@ -394,3 +394,19 @@ conf file content:
 
 now only these listed adresses are allowed as source!!
 
+
+
+### new added reader and priority handling
+
+reader function returns current status to user
+
+priority is handeled using 2 mutex:
+char_mutex and flag_mutex
+**flag_mutex**
+this mutex is used to protect a critical resourse called flag
+flag shows if another black list config is working
+**char_mutex**
+this mutex will lock common resourses like kernel_buffer
+if a white list config is going to lock char_mutex it checks flag to be 0 else it waits for black list job to be finished.
+
+
